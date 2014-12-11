@@ -49,10 +49,10 @@ public class MainActivity extends Activity {
 		items = new ArrayList<Item>();
 
 		items.add(new Item(1, new Date().getTime(), Colors.RED,
-				"關於Android Tutroial的事情", "Hello Content", "", 0, 0, 0));
-		items.add(new Item(2, new Date().getTime(), Colors.BLUE, "一隻非常可愛的小狗！",
-				"他的名字叫「大熱狗」，是一隻非常可愛的小狗。", "", 0, 0, 0));
-		items.add(new Item(3, new Date().getTime(), Colors.GREEN, "一首非常好聽的音樂！",
+				"Hello MyAndroidApp", "Hello Content", "", 0, 0, 0));
+		items.add(new Item(2, new Date().getTime(), Colors.BLUE, "Welcom to MyAndroidApp",
+				"Welcom!!", "", 0, 0, 0));
+		items.add(new Item(3, new Date().getTime(), Colors.GREEN, "Thank you for using MyAndroidApp",
 				"Hello Content", "", 0, 0, 0));
 
 		// 建立自訂Adapter物件
@@ -302,6 +302,10 @@ public class MainActivity extends Activity {
 		delete_item.setVisible(selectedCount > 0);
 	}
 	
+	public void clickPreferences(MenuItem item) {
+		// 設定啟動元件
+		startActivity(new Intent(this, PrefActivity.class));
+	}
 
 	// 方法名稱跟onClick的設定一樣，參數型態是android.view.View
 	// 點擊應用程式名稱元件後呼叫的方法

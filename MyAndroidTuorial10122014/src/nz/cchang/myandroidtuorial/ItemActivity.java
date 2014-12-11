@@ -4,7 +4,9 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 
@@ -72,7 +74,7 @@ public class ItemActivity extends Activity {
 		}
 	}
 	
-	private Colors getColors(int color) {
+	public static Colors getColors(int color) {
 		Colors result = Colors.LIGHTGREY;
 
 		if (color == Colors.BLUE.parseColor()) {
@@ -117,6 +119,11 @@ public class ItemActivity extends Activity {
 			// 新增記事
 			else {
 				item.setDatetime(new Date().getTime());
+				// 建立 SharedPreferences物件
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+				// 讀取設定的預設顏色
+				int color = sharedPreferences.getInt("DEFAULT_COLOR", -1);
+				item.setColor(getColors(color));
 			}
 
 			Intent result = getIntent();

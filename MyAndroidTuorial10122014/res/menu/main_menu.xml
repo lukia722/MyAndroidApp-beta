@@ -45,4 +45,10 @@
 		</menu>
 	</item>
 	
+    <!-- 設定 -->
+    <item 
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:onClick="clickPreferences" />
+	
 </menu>

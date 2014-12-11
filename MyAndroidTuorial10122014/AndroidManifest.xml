@@ -44,12 +44,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+         <!-- 選擇顏色 -->
         <activity 
             android:name="nz.cchang.myandroidtuorial.ColorActivity"
             android:theme="@android:style/Theme.Dialog"
-            android:label="@string/title_activity_color" />
+            android:label="@string/title_activity_color" >           
+              <!-- 加入設定元件啟動用的Action名稱 -->
+        <intent-filter>
+            <action android:name="nz.cchang.myandroidtuorial.CHOOSE_COLOR" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
         
+         </activity>
+        <!-- 設定元件 -->
+        <activity 
+            android:name="nz.cchang.myandroidtuorial.PrefActivity" ></activity>
+
     </application>
 
 </manifest>

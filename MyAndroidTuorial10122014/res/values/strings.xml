@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MyAndroidTuorial</string>
+    <string name="app_name">MyAndroidApp</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_color">設定顏色</string>
     <string name="title">標題</string>
