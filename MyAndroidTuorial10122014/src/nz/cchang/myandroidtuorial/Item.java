@@ -13,8 +13,8 @@ public class Item implements Serializable {
 	private String title;
 	private String content;
 	private String fileName;
-	private double latutude;
-	private double longtude;
+	private double latitude;
+	private double longitude;
 	private long lastModify;
 	private boolean selected;
 
@@ -25,7 +25,7 @@ public class Item implements Serializable {
 	}
 
 	public Item(long id, long datetime, Colors color, String title,
-			String content, String fileName, double latutude, double longtude,
+			String content, String fileName, double latitude, double longitude,
 			long lastModify) {
 		this.id = id;
 		this.datetime = datetime;
@@ -33,8 +33,8 @@ public class Item implements Serializable {
 		this.title = title;
 		this.content = content;
 		this.fileName = fileName;
-		this.latutude = latutude;
-		this.longtude = longtude;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.lastModify = lastModify;
 	}
 
@@ -102,20 +102,20 @@ public class Item implements Serializable {
 		this.fileName = fileName;
 	}
 
-	public double getLatutude() {
-		return latutude;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLatutude(double latutude) {
-		this.latutude = latutude;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public double getLongtude() {
-		return longtude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtude(double longtude) {
-		this.longtude = longtude;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public long getLastModify() {
