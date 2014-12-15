@@ -37,14 +37,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		// 建立應用程式需要的表格
+		db.execSQL(ItemDAO.CREATE_TABLE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		// 刪除原有的表格
-		
-		
+		db.execSQL("DROP TABLE IF EXISTS " + ItemDAO.TABLE_NAME);		
 		// 呼叫 onCreate建立新版表格
 		onCreate(db);
 	}

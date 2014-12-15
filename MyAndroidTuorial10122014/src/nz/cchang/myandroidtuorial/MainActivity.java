@@ -1,7 +1,5 @@
 package nz.cchang.myandroidtuorial;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -36,6 +34,8 @@ public class MainActivity extends Activity {
 
 	// 以選擇項目數量
 	private int selectedCount = 0;
+	
+	private ItemDAO itemDAO;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +44,19 @@ public class MainActivity extends Activity {
 
 		processViews();
 		processControllers();
+		
+		// 建立資料庫物件
+		itemDAO = new ItemDAO(getApplicationContext());
+		
+		// 如果資料庫是空的，就建立一些範例資料
+		// 這是為了方便測試用，完成應用程式之後就可以拿掉
+		if (itemDAO.getCount() == 0) {
+			itemDAO.sample();
+		}
 
-		// 加入範例資料
-		items = new ArrayList<Item>();
-
-		items.add(new Item(1, new Date().getTime(), Colors.RED,
-				"Hello MyAndroidApp", "Hello Content", "", 0, 0, 0));
-		items.add(new Item(2, new Date().getTime(), Colors.BLUE, "Welcom to MyAndroidApp",
-				"Welcom!!", "", 0, 0, 0));
-		items.add(new Item(3, new Date().getTime(), Colors.GREEN, "Thank you for using MyAndroidApp",
-				"Hello Content", "", 0, 0, 0));
+		
+		// 取得所有記事資料
+		items =itemDAO.getAll();
 
 		// 建立自訂Adapter物件
 		itemAdapter = new ItemAdapter(this, R.layout.single_item, items);
@@ -71,8 +74,8 @@ public class MainActivity extends Activity {
 
 			// 如果新增記事
 			if (requestCode == 0) {
-				// 設定記事物件的編號與日期時間
-				item.setId(items.size() + 1);
+				// 新增記事資料到資料庫
+				item = itemDAO.insert(item);
 
 				// 加入新稱家的記事物件
 				items.add(item);
@@ -87,6 +90,8 @@ public class MainActivity extends Activity {
 
 				if (poistion != -1) {
 					// 設定修改的記事物件
+					itemDAO.update(item);
+					
 					items.set(poistion, item);
 					itemAdapter.notifyDataSetChanged();
 				}
@@ -248,7 +253,8 @@ public class MainActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
-							// 刪除所有以勾選的項目
+							
+							// 取得最後一個元素的編號
 							int index = itemAdapter.getCount() - 1;
 
 							while (index > -1) {
@@ -256,6 +262,8 @@ public class MainActivity extends Activity {
 
 								if (item.isSelected()) {
 									itemAdapter.remove(item);
+									// 刪除資料庫中的記事資料
+									itemDAO.delete(item.getId());
 								}
 
 								index--;
