@@ -1,14 +1,18 @@
 package nz.cchang.myandroidtuorial;
 
+import java.io.File;
 import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class ItemActivity extends Activity {
 
@@ -23,6 +27,12 @@ public class ItemActivity extends Activity {
 
 	// 記事物件
 	private Item item;
+	
+	// 檔案名稱
+	private String fileName;
+	
+	// 照片
+	private ImageView picture;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +66,9 @@ public class ItemActivity extends Activity {
 		// TODO Auto-generated method stub
 		if (requestCode == Activity.RESULT_OK) {
 			switch (requestCode) {
+			// 照相
 			case START_CAMERA:
+				item.setFileName(fileName);
 				break;
 			case START_RECORD:
 				break;
@@ -142,6 +154,21 @@ public class ItemActivity extends Activity {
 
 		switch (id) {
 		case R.id.take_picture:
+			// 起動向機元件用的Intent物件
+			Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			
+			
+			// 照片檔案名稱
+			File pictureFile = configFileName("p", ".jpg");
+			Uri uri = Uri.fromFile(pictureFile);
+			
+			
+			// 設定檔案名稱
+			intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+			
+			
+			// 啟動相機元件
+			startActivityForResult(intentCamera, START_CAMERA);
 			break;
 
 		case R.id.record_sound:
@@ -158,6 +185,40 @@ public class ItemActivity extends Activity {
 			startActivityForResult(new Intent(this, ColorActivity.class),
 					START_COLOR);
 			break;
+		}
+	}
+
+	private File configFileName(String prefix, String extension) {
+		// TODO Auto-generated method stub
+		// 	如果記事資料已經有檔案名稱
+		if (item.getFileName() != null && item.getFileName().length() > 0) {
+			fileName = item.getFileName();
+		} 
+		// 產生檔案名稱
+		else {
+			fileName = FileUtil.getUniqueFileName();
+		}
+		return new File(FileUtil.getExternalStorageDir(FileUtil.APP_DIR), prefix + fileName + extension);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		
+		// 如果有檔案名稱
+		if (item.getFileName() != null && item.getFileName().length() > 0) {
+			// 照片檔案物件
+			File file = configFileName("p", ".jpg");
+			
+			// 如果照片檔案存在
+			if (file.exists()) {
+				// 顯示照片元件
+				picture.setVisibility(View.VISIBLE);
+				// 設定照片
+				FileUtil.fileToImageView(file.getAbsolutePath(), picture);
+			}
 		}
 	}
 }
