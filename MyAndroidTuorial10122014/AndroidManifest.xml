@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 如果應用程式需要讀取外部儲存設備，最好加入這個授權 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
  
 
     <application
@@ -64,7 +66,17 @@
         <!-- 設定元件 -->
         <activity 
             android:name="nz.cchang.myandroidtuorial.PrefActivity" ></activity>
-
+        
+        <!-- 錄音元件 -->
+		<activity 
+		    android:name="nz.cchang.myandroidtuorial.RecordActiviy"
+		    android:theme="@android:style/Theme.Dialog"
+		    android:label="@string/title_record" />
+		
+		<activity
+		    android:name="nz.cchang.myandroidtutorial.PlayActivity"
+		    android:theme="@android:style/Theme.Dialog"
+		    android:label="@string/title_record" />
     </application>
 
 </manifest>

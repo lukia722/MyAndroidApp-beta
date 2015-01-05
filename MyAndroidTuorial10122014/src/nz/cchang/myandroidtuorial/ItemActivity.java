@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -70,7 +72,10 @@ public class ItemActivity extends Activity {
 			case START_CAMERA:
 				item.setFileName(fileName);
 				break;
+			// 錄音
 			case START_RECORD:
+				// 設定錄音檔案名稱
+				item.setFileName(fileName);
 				break;
 			case START_LOCATION:
 				break;
@@ -172,6 +177,41 @@ public class ItemActivity extends Activity {
 			break;
 
 		case R.id.record_sound:
+			// 錄音檔案名稱
+			final File recordFile = configFileName("R", ".mp3");
+			
+			if (recordFile.exists()) {
+				// 詢問播放還是重相錄製的對話框
+				AlertDialog.Builder d = new AlertDialog.Builder(this);
+				
+				d.setTitle(R.string.title_record)
+				.setCancelable(true);
+				d.setPositiveButton(R.string.record_play, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						// 播放
+						Intent playIntent = new Intent(ItemActivity.this, PlayActivity.class);
+						playIntent.putExtra("fileName", recordFile.getAbsolutePath());
+						startActivity(playIntent);
+						
+					}
+				});
+				d.setNegativeButton(R.string.record_new, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						goToRecord(recordFile);
+					}
+				});
+				
+				// 顯示對話框
+				d.show();
+			} else {
+				goToRecord(recordFile);
+			}
 			break;
 
 		case R.id.set_location:
@@ -186,6 +226,13 @@ public class ItemActivity extends Activity {
 					START_COLOR);
 			break;
 		}
+	}
+	
+	private void goToRecord(File recordFile) {
+		// 錄音
+		Intent recordIntent = new Intent(this, RecordActivity.class);
+		recordIntent.putExtra("fileName", recordFile.getAbsolutePath());
+		startActivityForResult(recordIntent, START_RECORD);
 	}
 
 	private File configFileName(String prefix, String extension) {
