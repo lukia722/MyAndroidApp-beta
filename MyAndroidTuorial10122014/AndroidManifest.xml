@@ -69,12 +69,12 @@
         
         <!-- 錄音元件 -->
 		<activity 
-		    android:name="nz.cchang.myandroidtuorial.RecordActiviy"
+		    android:name="nz.cchang.myandroidtuorial.RecordActivity"
 		    android:theme="@android:style/Theme.Dialog"
 		    android:label="@string/title_record" />
 		
 		<activity
-		    android:name="nz.cchang.myandroidtutorial.PlayActivity"
+		    android:name="nz.cchang.myandroidtuorial.PlayActivity"
 		    android:theme="@android:style/Theme.Dialog"
 		    android:label="@string/title_record" />
     </application>

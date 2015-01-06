@@ -188,7 +188,7 @@ public class ItemActivity extends Activity {
 				.setCancelable(true);
 				d.setPositiveButton(R.string.record_play, new DialogInterface.OnClickListener() {
 					
-					@Override
+//					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						// ¼½©ñ
@@ -200,7 +200,7 @@ public class ItemActivity extends Activity {
 				});
 				d.setNegativeButton(R.string.record_new, new DialogInterface.OnClickListener() {
 					
-					@Override
+//					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						goToRecord(recordFile);

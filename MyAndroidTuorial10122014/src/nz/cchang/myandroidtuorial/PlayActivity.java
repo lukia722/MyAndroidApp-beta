@@ -70,6 +70,7 @@ public class PlayActivity extends Activity {
 		// TODO Auto-generated method stub
 		control = (SeekBar)findViewById(R.id.control);
 	}
+	
 	private void processControllers() {
 		// TODO Auto-generated method stub
 		// 註冊 SeekBar元件進度改變事件
@@ -144,7 +145,7 @@ public class PlayActivity extends Activity {
 	private class MyPlayTask extends AsyncTask<Void, Void, Void>{
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(Void... args) {
 			// TODO Auto-generated method stub
 			while (mediaPlayer.isPlaying()) {
 				// 設定播放進度

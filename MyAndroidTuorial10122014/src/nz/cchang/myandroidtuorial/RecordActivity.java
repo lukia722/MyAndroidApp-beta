@@ -89,7 +89,7 @@ public class RecordActivity extends Activity {
 	private class MicLevelTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(Void... args) {
 			// TODO Auto-generated method stub
 			while (isRecording) {
 				publishProgress();
