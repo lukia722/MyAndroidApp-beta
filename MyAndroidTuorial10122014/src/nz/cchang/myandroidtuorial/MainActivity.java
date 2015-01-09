@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
 				// 新增記事資料到資料庫
 				item = itemDAO.insert(item);
 
-				// 加入新稱家的記事物件
+				// 加入新增加的記事物件
 				items.add(item);
 
 				// 通知資料改變

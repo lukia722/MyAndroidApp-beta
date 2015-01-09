@@ -16,26 +16,45 @@ public class Item implements Serializable {
 	private double latitude;
 	private double longitude;
 	private long lastModify;
-	private boolean selected;
+	private boolean selected;	
+
+//	private String date;	
+//	private String time;	
+//	private String location;
+//	private String people;
+//	private String activity;
 
 	public Item() {
+
 		title = "";
 		content = "";
 		color = Colors.LIGHTGREY;
+
+//		date= "";		
+//		time= "";
+//		location= "";
+//		people= "";
+//		activity= "";
 	}
 
-	public Item(long id, long datetime, Colors color, String title,
-			String content, String fileName, double latitude, double longitude,
-			long lastModify) {
+	public Item(long id, long datetime, Colors color, String title, String content,
+			String fileName, double latitude, double longitude, long lastModify
+			/*String location, String people, String activity, String time, String date,*/  ) {
 		this.id = id;
 		this.datetime = datetime;
-		this.color = color;
+		this.color = color; 
 		this.title = title;
 		this.content = content;
 		this.fileName = fileName;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.lastModify = lastModify;
+		
+//		this.date = date;		
+//		this.time = time;
+//		this.location = location;
+//		this.people = people;
+//		this.activity = activity;
 	}
 
 	public long getId() {
@@ -48,6 +67,10 @@ public class Item implements Serializable {
 
 	public long getDatetime() {
 		return datetime;
+	}
+	
+	public void setDatetime(long datetime) {
+		this.datetime = datetime;
 	}
 
 	// 裝置區域的日期時間
@@ -64,10 +87,6 @@ public class Item implements Serializable {
 	// 裝置區域的時間
 	public String getLocalTime() {
 		return String.format(Locale.getDefault(), "%tR", new Date(datetime));
-	}
-
-	public void setDatetime(long datetime) {
-		this.datetime = datetime;
 	}
 
 	public Colors getColor() {
@@ -133,5 +152,45 @@ public class Item implements Serializable {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+
+//	public String getDate() {
+//		return date;
+//	}
+//
+//	public void setDate(String date) {
+//		this.date = date;
+//	}
+
+//public String getTime() {
+//	return time;
+//}
+//
+//public void setTime(String time) {
+//	this.time = time;
+//}
+//
+//public String getLocation() {
+//	return location;
+//}
+//
+//public void setLocation(String location) {
+//	this.location = location;
+//}
+//
+//public String getPeople() {
+//	return people;
+//}
+//
+//public void setPeople(String people) {
+//	this.people = people;
+//}
+//
+//public String getActivity() {
+//	return activity;
+//}
+//
+//public void setActivity(String activity) {
+//	this.activity = activity;
+//}
 
 }

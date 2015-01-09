@@ -30,7 +30,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LinearLayout itemView;
-		// 讀去目前位置的記事物件
+		// 讀取目前位置的記事物件
 		final Item item = getItem(position);
 
 		if (convertView == null) {
@@ -44,7 +44,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 			itemView = (LinearLayout) convertView;
 		}
 
-		// 讀去記事顏色、以選擇、標題與日期元件
+		// 讀取記事顏色、以選擇、標題與日期元件
 		RelativeLayout typeColor = (RelativeLayout) itemView
 				.findViewById(R.id.type_color);
 		ImageView selectedItem = (ImageView) itemView

@@ -11,6 +11,36 @@
     
     <TableRow>
         <TextView 
+            android:text="@string/date"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText 
+            android:id="@+id/date_text"
+            android:hint="@string/enter_date"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
+    <TableRow>
+        <TextView 
+            android:text="@string/time"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText 
+            android:id="@+id/time_text"
+            android:hint="@string/enter_time"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
+    <TableRow>
+        <TextView 
             android:text="@string/title"
             android:background="@drawable/retangle_drawable"
             android:padding="6sp"
@@ -24,6 +54,51 @@
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>    
+    <TableRow>
+        <TextView 
+            android:text="@string/location"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText 
+            android:id="@+id/location_text"
+            android:hint="@string/enter_location"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
+    <TableRow>
+        <TextView 
+            android:text="@string/people"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText 
+            android:id="@+id/people_text"
+            android:hint="@string/enter_people"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>       
+    <TableRow>
+        <TextView 
+            android:text="@string/activity"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText 
+            android:id="@+id/activity_text"
+            android:hint="@string/enter_activity"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>  
     <TableRow>
         <TextView
             android:text="@string/content"

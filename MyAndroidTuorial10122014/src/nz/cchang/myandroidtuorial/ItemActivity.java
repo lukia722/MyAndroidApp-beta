@@ -19,7 +19,9 @@ import android.widget.ImageView;
 public class ItemActivity extends Activity {
 
 	private EditText title_text, content_text;
-
+//	private EditText date_text;
+	
+//	private EditText date_text, time_text, title_text, location_text, people_text, activity_text, content_text;
 	// 啟動功能用的請求代碼
 	private static final int START_CAMERA = 0;
 	private static final int START_RECORD = 1;
@@ -53,8 +55,15 @@ public class ItemActivity extends Activity {
 			// 接收記事次見與設定標題、內容
 			item = (Item) intent.getExtras().getSerializable(
 					"nz.cchang.myandroidtuorial.Item");
+
 			title_text.setText(item.getTitle());
 			content_text.setText(item.getContent());
+			
+//			date_text.setText(item.getDate());
+//			time_text.setText(item.getTime());	
+//			location_text.setText(item.getLocation());
+//			people_text.setText(item.getPeople());
+//			activity_text.setText(item.getActivity());
 		}
 
 		// 新增記事
@@ -112,8 +121,17 @@ public class ItemActivity extends Activity {
 	
 	private void processViews() {
 		// TODO Auto-generated method stub
+
 		title_text = (EditText) findViewById(R.id.title_text);
 		content_text = (EditText) findViewById(R.id.content_text);
+		picture = (ImageView)findViewById(R.id.picture);
+
+//		date_text = (EditText)findViewById(R.id.date_text);
+//		time_text = (EditText)findViewById(R.id.time_text);		
+//		location_text = (EditText)findViewById(R.id.location_text);
+//		people_text = (EditText)findViewById(R.id.people_text);
+//		activity_text = (EditText)findViewById(R.id.activity_text);
+
 	}
 
 	// 點擊確定與取消都會呼叫這個方法
@@ -123,10 +141,12 @@ public class ItemActivity extends Activity {
 			// 讀取使用者輸入的標題與內容
 			String titleText = title_text.getText().toString();
 			String contentText = content_text.getText().toString();
+//			String dateText = date_text.getText().toString();
 
 			// 設定記事物件的標題與內容
 			item.setTitle(titleText);
 			item.setContent(contentText);
+//			item.setDate(dateText);
 
 			// 如果是修改記事
 			if (getIntent().getAction().equals(
