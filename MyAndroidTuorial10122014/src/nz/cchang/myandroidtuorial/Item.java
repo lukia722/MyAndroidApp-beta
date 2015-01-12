@@ -18,11 +18,10 @@ public class Item implements Serializable {
 	private long lastModify;
 	private boolean selected;	
 	private String it_date;	
-	
-//	private String time;	
-//	private String location;
-//	private String people;
-//	private String activity;
+	private String time;	
+	private String location;
+	private String people;
+	private String activity;
 
 	public Item() {
 
@@ -30,32 +29,30 @@ public class Item implements Serializable {
 		content = "";
 		color = Colors.LIGHTGREY;
 		it_date= "";	
-		
-//		time= "";
-//		location= "";
-//		people= "";
-//		activity= "";
+		time= "";		
+		location= "";
+		people= "";
+		activity= "";
 	}
 
-	public Item(long id, long datetime, String it_date, Colors color, String title, String content,
+	public Item(long id, long datetime, String it_date, String time, Colors color, String title, 
+			String location, String people, String activity, String content,
 			String fileName, double latitude, double longitude, long lastModify
-			/*String location, String people, String activity, String time,*/  ) {
+			  ) {
 		this.id = id;
 		this.datetime = datetime;
 		this.it_date = it_date;
+		this.time = time;
 		this.color = color; 
 		this.title = title;
 		this.content = content;
 		this.fileName = fileName;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.lastModify = lastModify;
-		
-		
-//		this.time = time;
-//		this.location = location;
-//		this.people = people;
-//		this.activity = activity;
+		this.lastModify = lastModify;		
+		this.location = location;
+		this.people = people;
+		this.activity = activity;
 	}
 
 	public long getId() {
@@ -96,6 +93,14 @@ public class Item implements Serializable {
 
 	public void setIt_date(String it_date) {
 		this.it_date = it_date;
+	}
+	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 	public Colors getColor() {
@@ -161,38 +166,29 @@ public class Item implements Serializable {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+	
+	public String getLocation() {
+		return location;
+	}
 
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-//public String getTime() {
-//	return time;
-//}
-//
-//public void setTime(String time) {
-//	this.time = time;
-//}
-//
-//public String getLocation() {
-//	return location;
-//}
-//
-//public void setLocation(String location) {
-//	this.location = location;
-//}
-//
-//public String getPeople() {
-//	return people;
-//}
-//
-//public void setPeople(String people) {
-//	this.people = people;
-//}
-//
-//public String getActivity() {
-//	return activity;
-//}
-//
-//public void setActivity(String activity) {
-//	this.activity = activity;
-//}
+	public String getPeople() {
+		return people;
+	}
+
+	public void setPeople(String people) {
+		this.people = people;
+	}
+
+	public String getActivity() {
+		return activity;
+	}
+
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
 
 }

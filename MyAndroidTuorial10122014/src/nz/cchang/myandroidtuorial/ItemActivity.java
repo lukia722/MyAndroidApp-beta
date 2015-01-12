@@ -19,7 +19,7 @@ import android.widget.ImageView;
 public class ItemActivity extends Activity {
 
 	private EditText title_text, content_text;
-	private EditText it_date_text;
+	private EditText it_date_text, time_text , location_text, people_text, activity_text;
 	
 //	private EditText time_text, title_text, location_text, people_text, activity_text, content_text;
 	// 啟動功能用的請求代碼
@@ -59,10 +59,10 @@ public class ItemActivity extends Activity {
 			title_text.setText(item.getTitle());
 			content_text.setText(item.getContent());
 			it_date_text.setText(item.getIt_date());
-//			time_text.setText(item.getTime());	
-//			location_text.setText(item.getLocation());
-//			people_text.setText(item.getPeople());
-//			activity_text.setText(item.getActivity());
+			time_text.setText(item.getTime());				
+			location_text.setText(item.getLocation());
+			people_text.setText(item.getPeople());
+			activity_text.setText(item.getActivity());
 		}
 
 		// 新增記事
@@ -146,11 +146,10 @@ public class ItemActivity extends Activity {
 		content_text = (EditText) findViewById(R.id.content_text);
 		picture = (ImageView)findViewById(R.id.picture);
 		it_date_text = (EditText)findViewById(R.id.it_date_text);
-		
-//		time_text = (EditText)findViewById(R.id.time_text);		
-//		location_text = (EditText)findViewById(R.id.location_text);
-//		people_text = (EditText)findViewById(R.id.people_text);
-//		activity_text = (EditText)findViewById(R.id.activity_text);
+		time_text = (EditText)findViewById(R.id.time_text);	
+		location_text = (EditText)findViewById(R.id.location_text);
+		people_text = (EditText)findViewById(R.id.people_text);
+		activity_text = (EditText)findViewById(R.id.activity_text);
 
 	}
 
@@ -162,11 +161,20 @@ public class ItemActivity extends Activity {
 			String titleText = title_text.getText().toString();
 			String contentText = content_text.getText().toString();
 			String it_dateText = it_date_text.getText().toString();
+			String timeText = time_text.getText().toString();
+			String locationText=location_text.getText().toString();
+			String peopleText = people_text.getText().toString();
+			String activityText = activity_text.getText().toString();
 
 			// 設定記事物件的標題與內容
 			item.setTitle(titleText);
 			item.setContent(contentText);
 			item.setIt_date(it_dateText);
+			item.setTime(timeText);
+			item.setLocation(locationText);
+			item.setPeople(peopleText);
+			item.setActivity(activityText);
+			
 
 			// 如果是修改記事
 			if (getIntent().getAction().equals(

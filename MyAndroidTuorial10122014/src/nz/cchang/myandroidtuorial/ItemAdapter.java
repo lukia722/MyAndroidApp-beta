@@ -60,7 +60,6 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 		// 設定標題與日期時間
 		titleView.setText(item.getTitle());
 		dateView.setText(item.getLocalDatetime());
-//		dateView.setText(item.getLocalDatetime());
 
 		// 設定是否已經選擇
 		selectedItem.setVisibility(item.isSelected() ? View.VISIBLE
