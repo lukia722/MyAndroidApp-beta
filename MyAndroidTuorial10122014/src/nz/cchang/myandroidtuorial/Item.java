@@ -17,8 +17,8 @@ public class Item implements Serializable {
 	private double longitude;
 	private long lastModify;
 	private boolean selected;	
-
-//	private String date;	
+	private String it_date;	
+	
 //	private String time;	
 //	private String location;
 //	private String people;
@@ -29,19 +29,20 @@ public class Item implements Serializable {
 		title = "";
 		content = "";
 		color = Colors.LIGHTGREY;
-
-//		date= "";		
+		it_date= "";	
+		
 //		time= "";
 //		location= "";
 //		people= "";
 //		activity= "";
 	}
 
-	public Item(long id, long datetime, Colors color, String title, String content,
+	public Item(long id, long datetime, String it_date, Colors color, String title, String content,
 			String fileName, double latitude, double longitude, long lastModify
-			/*String location, String people, String activity, String time, String date,*/  ) {
+			/*String location, String people, String activity, String time,*/  ) {
 		this.id = id;
 		this.datetime = datetime;
+		this.it_date = it_date;
 		this.color = color; 
 		this.title = title;
 		this.content = content;
@@ -50,7 +51,7 @@ public class Item implements Serializable {
 		this.longitude = longitude;
 		this.lastModify = lastModify;
 		
-//		this.date = date;		
+		
 //		this.time = time;
 //		this.location = location;
 //		this.people = people;
@@ -87,6 +88,14 @@ public class Item implements Serializable {
 	// 裝置區域的時間
 	public String getLocalTime() {
 		return String.format(Locale.getDefault(), "%tR", new Date(datetime));
+	}
+	
+	public String getIt_date() {
+		return it_date;
+	}
+
+	public void setIt_date(String it_date) {
+		this.it_date = it_date;
 	}
 
 	public Colors getColor() {
@@ -153,13 +162,6 @@ public class Item implements Serializable {
 		this.selected = selected;
 	}
 
-//	public String getDate() {
-//		return date;
-//	}
-//
-//	public void setDate(String date) {
-//		this.date = date;
-//	}
 
 //public String getTime() {
 //	return time;

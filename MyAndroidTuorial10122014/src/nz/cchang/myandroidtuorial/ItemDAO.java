@@ -19,6 +19,7 @@ public class ItemDAO {
 	
 	// 其他表格欄位名稱
 	public static final String DATETIME_COLUMN = "datetime";
+	public static final String IT_DATE_COLUMN = "it_date";
 	public static final String COLOR_COLUMN = "color";
 	public static final String TITLE_COLUMN = "title";
 	public static final String CONTENT_COLUMN = "content";
@@ -26,9 +27,9 @@ public class ItemDAO {
 	public static final String LATITUDE_COLUMN = "latitude";
 	public static final String LONGITUDE_COLUMN = "longitude";
 	public static final String LASTMODIFY_COLUMN = "lastmodify";
+//	public static final String IT_DATE_COLUMN = "it_date";
 
 
-//	public static final String DATE_COLUMN = "date";
 //	public static final String TIME_COLUMN = "time";
 //	public static final String LOCATION_COLUMN = "location";
 //	public static final String PEOPLE_COLUMN = "people";
@@ -39,6 +40,7 @@ public class ItemDAO {
 			"CREATE TABLE " + TABLE_NAME + " (" + 
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			DATETIME_COLUMN + " INTEGER NOT NULL, " + 
+			IT_DATE_COLUMN + " TEXT NOT NULL, " +			
 			COLOR_COLUMN + " INTEFER NOT NULL, " +
 			TITLE_COLUMN + " TEXT NOT NULL, " +
 			CONTENT_COLUMN + " TEXT NOT NULL, " +
@@ -47,7 +49,7 @@ public class ItemDAO {
 			LONGITUDE_COLUMN + " REAL, " + 
 			LASTMODIFY_COLUMN + " INTEGER " + ") ";
 	
-//	DATE_COLUMN + " TEXT NOT NULL, " +
+
 //	TIME_COLUMN + " TEXT NOT NULL, " +
 //	LOCATION_COLUMN + " TEXT, " +
 //	PEOPLE_COLUMN + " TEXT, " +
@@ -78,7 +80,7 @@ public class ItemDAO {
 		// 第一個參數是欄位名稱，第二個參數是欄位資料
 		cv.put(DATETIME_COLUMN, item.getDatetime());
 		cv.put(COLOR_COLUMN, item.getColor().parseColor());
-
+		cv.put(IT_DATE_COLUMN, item.getIt_date());	
 		cv.put(TITLE_COLUMN, item.getTitle());
 		cv.put(CONTENT_COLUMN, item.getContent());
 		cv.put(FILENAME_COLUMN, item.getFileName());
@@ -86,7 +88,7 @@ public class ItemDAO {
 		cv.put(LONGITUDE_COLUMN, item.getLongitude());
 		cv.put(LASTMODIFY_COLUMN, item.getLastModify());
 
-//		cv.put(DATE_COLUMN, item.getDate());		
+	
 //		cv.put(TIME_COLUMN, item.getTime());
 //		cv.put(LOCATION_COLUMN, item.getLocation());
 //		cv.put(PEOPLE_COLUMN, item.getPeople());
@@ -113,6 +115,7 @@ public class ItemDAO {
 		
 		// 第一個參數是欄位名稱，第二個參數是欄位資料
 		cv.put(DATETIME_COLUMN, item.getDatetime());
+		cv.put(IT_DATE_COLUMN, item.getIt_date());	
 		cv.put(COLOR_COLUMN, item.getColor().parseColor());
 		cv.put(TITLE_COLUMN, item.getTitle());
 		cv.put(CONTENT_COLUMN, item.getContent());
@@ -121,7 +124,7 @@ public class ItemDAO {
 		cv.put(LONGITUDE_COLUMN, item.getLongitude());
 		cv.put(LASTMODIFY_COLUMN, item.getLastModify());		
 
-//		cv.put(DATE_COLUMN, item.getDate());		
+	
 //		cv.put(TIME_COLUMN, item.getTime());
 //		cv.put(LOCATION_COLUMN, item.getLocation());
 //		cv.put(PEOPLE_COLUMN, item.getPeople());
@@ -190,16 +193,16 @@ public class ItemDAO {
 		
 		result.setId(cursor.getLong(0));
 		result.setDatetime(cursor.getLong(1));
-		result.setColor(ItemActivity.getColors(cursor.getInt(2)));
+		result.setIt_date(cursor.getString(2));
+		result.setColor(ItemActivity.getColors(cursor.getInt(3)));
+		result.setTitle(cursor.getString(4));
+		result.setContent(cursor.getString(5));
+		result.setFileName(cursor.getString(6));
+		result.setLatitude(cursor.getDouble(7));
+		result.setLongitude(cursor.getDouble(8));
+		result.setLastModify(cursor.getLong(9));
 
-		result.setTitle(cursor.getString(3));
-		result.setContent(cursor.getString(4));
-		result.setFileName(cursor.getString(5));
-		result.setLatitude(cursor.getDouble(6));
-		result.setLongitude(cursor.getDouble(7));
-		result.setLastModify(cursor.getLong(8));
-
-//		result.setDate(cursor.getString(3));		
+		
 //		result.setTime(cursor.getString(4));
 //		result.setLocation(cursor.getString(6));
 //		result.setPeople(cursor.getString(7));
@@ -230,10 +233,10 @@ public class ItemDAO {
 //		Item item3 = new Item(0, new Date().getTime(), Colors.GREEN, "10/10/2014","Afternoon", "Thank you for using MyAndroidApp", "Tea Room", "Coffee", "Janet", "Hello Content", "", 25.04719, 121.516981, 0);
 //		Item item4 = new Item(0, new Date().getTime(), Colors.ORANGE, "22/12/2014","Evening", "Data stores on SQLiteDatabase", "Supermarket", "Shopping", "Amber", "Hello Data", "", 0, 0, 0);
 	
-		Item item = new Item(0, new Date().getTime(), Colors.RED, "Hello MyAndroidApp",  "Hello Content", "", 0, 0, 0);
-		Item item2 = new Item(0, new Date().getTime(), Colors.BLUE,  "Welcome to MyAndroidApp",  "Welcome!!", "", 0, 0, 0);
-		Item item3 = new Item(0, new Date().getTime(), Colors.GREEN,  "Thank you for using MyAndroidApp", "Hello Content", "", 25.04719, 121.516981, 0);
-		Item item4 = new Item(0, new Date().getTime(), Colors.ORANGE,  "Data stores on SQLiteDatabase",  "Hello Data", "", 0, 0, 0);
+		Item item = new Item(0, new Date().getTime(), "01/01/2014", Colors.RED, "Hello MyAndroidApp", "Hello Content", "", 0, 0, 0);
+		Item item2 = new Item(0, new Date().getTime(), "02/01/2014", Colors.BLUE, "Welcome to MyAndroidApp", "Welcome!!", "", 0, 0, 0);
+		Item item3 = new Item(0, new Date().getTime(), "03/01/2014", Colors.GREEN, "Thank you for using MyAndroidApp", "Hello Content", "", 25.04719, 121.516981, 0);
+		Item item4 = new Item(0, new Date().getTime(), "04/01/2014", Colors.ORANGE, "Data stores on SQLiteDatabase", "Hello Data", "", 0, 0, 0);
 		
 		insert(item);
 		insert(item2);

@@ -19,9 +19,9 @@ import android.widget.ImageView;
 public class ItemActivity extends Activity {
 
 	private EditText title_text, content_text;
-//	private EditText date_text;
+	private EditText it_date_text;
 	
-//	private EditText date_text, time_text, title_text, location_text, people_text, activity_text, content_text;
+//	private EditText time_text, title_text, location_text, people_text, activity_text, content_text;
 	// 啟動功能用的請求代碼
 	private static final int START_CAMERA = 0;
 	private static final int START_RECORD = 1;
@@ -33,7 +33,7 @@ public class ItemActivity extends Activity {
 	private Item item;
 	
 	// 檔案名稱
-	private String fileName;
+	private String fileName;	
 	
 	// 照片
 	private ImageView picture;
@@ -58,8 +58,7 @@ public class ItemActivity extends Activity {
 
 			title_text.setText(item.getTitle());
 			content_text.setText(item.getContent());
-			
-//			date_text.setText(item.getDate());
+			it_date_text.setText(item.getIt_date());
 //			time_text.setText(item.getTime());	
 //			location_text.setText(item.getLocation());
 //			people_text.setText(item.getPeople());
@@ -69,6 +68,27 @@ public class ItemActivity extends Activity {
 		// 新增記事
 		else {
 			item = new Item();
+		}
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		
+		// 如果有檔案名稱
+		if (item.getFileName() != null && item.getFileName().length() > 0) {
+			// 照片檔案物件
+			File file = configFileName("p", ".jpg");
+			
+			// 如果照片檔案存在
+			if (file.exists()) {
+				// 顯示照片元件
+				picture.setVisibility(View.VISIBLE);
+				// 設定照片
+				FileUtil.fileToImageView(file.getAbsolutePath(), picture);
+			}
 		}
 	}
 
@@ -125,8 +145,8 @@ public class ItemActivity extends Activity {
 		title_text = (EditText) findViewById(R.id.title_text);
 		content_text = (EditText) findViewById(R.id.content_text);
 		picture = (ImageView)findViewById(R.id.picture);
-
-//		date_text = (EditText)findViewById(R.id.date_text);
+		it_date_text = (EditText)findViewById(R.id.it_date_text);
+		
 //		time_text = (EditText)findViewById(R.id.time_text);		
 //		location_text = (EditText)findViewById(R.id.location_text);
 //		people_text = (EditText)findViewById(R.id.people_text);
@@ -141,12 +161,12 @@ public class ItemActivity extends Activity {
 			// 讀取使用者輸入的標題與內容
 			String titleText = title_text.getText().toString();
 			String contentText = content_text.getText().toString();
-//			String dateText = date_text.getText().toString();
+			String it_dateText = it_date_text.getText().toString();
 
 			// 設定記事物件的標題與內容
 			item.setTitle(titleText);
 			item.setContent(contentText);
-//			item.setDate(dateText);
+			item.setIt_date(it_dateText);
 
 			// 如果是修改記事
 			if (getIntent().getAction().equals(
@@ -266,26 +286,5 @@ public class ItemActivity extends Activity {
 			fileName = FileUtil.getUniqueFileName();
 		}
 		return new File(FileUtil.getExternalStorageDir(FileUtil.APP_DIR), prefix + fileName + extension);
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		
-		
-		// 如果有檔案名稱
-		if (item.getFileName() != null && item.getFileName().length() > 0) {
-			// 照片檔案物件
-			File file = configFileName("p", ".jpg");
-			
-			// 如果照片檔案存在
-			if (file.exists()) {
-				// 顯示照片元件
-				picture.setVisibility(View.VISIBLE);
-				// 設定照片
-				FileUtil.fileToImageView(file.getAbsolutePath(), picture);
-			}
-		}
 	}
 }

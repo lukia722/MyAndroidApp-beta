@@ -11,20 +11,20 @@
     
     <TableRow>
         <TextView 
-            android:text="@string/date"
+            android:text="@string/it_date"
             android:background="@drawable/retangle_drawable"
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <EditText 
-            android:id="@+id/date_text"
-            android:hint="@string/enter_date"
+            android:id="@+id/it_date_text"
+            android:hint="@string/enter_it_date"
             android:background="@drawable/retangle_drawable"
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
-    <TableRow>
+<!--     <TableRow>
         <TextView 
             android:text="@string/time"
             android:background="@drawable/retangle_drawable"
@@ -38,7 +38,7 @@
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </TableRow>
+    </TableRow> -->
     <TableRow>
         <TextView 
             android:text="@string/title"
@@ -54,7 +54,7 @@
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>    
-    <TableRow>
+<!--     <TableRow>
         <TextView 
             android:text="@string/location"
             android:background="@drawable/retangle_drawable"
@@ -98,7 +98,7 @@
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </TableRow>  
+    </TableRow>   -->
     <TableRow>
         <TextView
             android:text="@string/content"

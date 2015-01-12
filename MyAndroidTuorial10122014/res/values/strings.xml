@@ -4,8 +4,8 @@
     <string name="app_name">MyAndroidApp</string>
     <string name="title_activity_main">myMemory</string>
     <string name="title_activity_color">設定顏色</string>
-    <string name="date">Date</string>
-    <string name="enter_date">Enter date</string>
+    <string name="it_date">Date</string>
+    <string name="enter_it_date">Enter date</string>
     <string name="time">Time</string>
     <string name="enter_time">Enter time</string>
     <string name="title">Title</string>
