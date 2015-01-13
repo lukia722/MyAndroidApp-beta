@@ -1,10 +1,13 @@
 package nz.cchang.myandroidtuorial;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
 
+import android.R.anim;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +16,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -21,7 +25,7 @@ public class ItemActivity extends Activity {
 	private EditText title_text, content_text;
 	private EditText it_date_text, time_text , location_text, people_text, activity_text;
 	
-//	private EditText time_text, title_text, location_text, people_text, activity_text, content_text;
+	
 	// 啟動功能用的請求代碼
 	private static final int START_CAMERA = 0;
 	private static final int START_RECORD = 1;
@@ -37,6 +41,8 @@ public class ItemActivity extends Activity {
 	
 	// 照片
 	private ImageView picture;
+	
+	private String it_dateText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class ItemActivity extends Activity {
 		setContentView(R.layout.activity_item);
 
 		processViews();
+		selectDate(it_date_text);
 
 		// 取得Intent物件
 		Intent intent = getIntent();
@@ -70,6 +77,7 @@ public class ItemActivity extends Activity {
 			item = new Item();
 		}
 	}
+	
 	
 	@Override
 	protected void onResume() {
@@ -152,6 +160,29 @@ public class ItemActivity extends Activity {
 		activity_text = (EditText)findViewById(R.id.activity_text);
 
 	}
+	
+	public void selectDate(View view) {
+		Calendar eDate = Calendar.getInstance();
+		DatePickerDialog datePickerDialog = new DatePickerDialog (ItemActivity.this, datePicDlgOnDateSelLis, 
+				eDate.get(Calendar.YEAR), eDate.get(Calendar.MONTH), eDate.get(Calendar.DATE));
+		datePickerDialog.setTitle("Select date:");
+		datePickerDialog.setIcon(android.R.drawable.ic_dialog_info);
+		datePickerDialog.show();
+	}
+	
+	public DatePickerDialog.OnDateSetListener datePicDlgOnDateSelLis =
+			new DatePickerDialog.OnDateSetListener() {
+				
+				@Override
+				public void onDateSet(DatePicker view, int year, int monthOfYear,
+						int dayOfMonth) {
+					// TODO Auto-generated method stub
+					it_dateText = Integer.toString(dayOfMonth) + "/"
+							+ Integer.toString(monthOfYear + 1) + "/"
+							+ Integer.toString(year);
+					it_date_text.setText(it_dateText);
+				}
+			};
 
 	// 點擊確定與取消都會呼叫這個方法
 	public void onSubmit(View view) {
