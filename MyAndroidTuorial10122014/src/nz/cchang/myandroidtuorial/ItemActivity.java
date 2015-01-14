@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.R.anim;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -16,14 +15,18 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 public class ItemActivity extends Activity {
 
 	private EditText title_text, content_text;
-	private EditText it_date_text, time_text , location_text, people_text, activity_text;
+	private EditText it_date_text, time_text, location_text, people_text, activity_text;
+	Spinner time_spinner;
 	
 	
 	// 啟動功能用的請求代碼
@@ -42,7 +45,7 @@ public class ItemActivity extends Activity {
 	// 照片
 	private ImageView picture;
 	
-	private String it_dateText;
+	private String strDate, strTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,6 @@ public class ItemActivity extends Activity {
 		setContentView(R.layout.activity_item);
 
 		processViews();
-		selectDate(it_date_text);
 
 		// 取得Intent物件
 		Intent intent = getIntent();
@@ -66,7 +68,8 @@ public class ItemActivity extends Activity {
 			title_text.setText(item.getTitle());
 			content_text.setText(item.getContent());
 			it_date_text.setText(item.getIt_date());
-			time_text.setText(item.getTime());				
+//			time_text.setText(item.getTime());
+			time_spinner.equals(item.getTime());
 			location_text.setText(item.getLocation());
 			people_text.setText(item.getPeople());
 			activity_text.setText(item.getActivity());
@@ -77,6 +80,29 @@ public class ItemActivity extends Activity {
 			item = new Item();
 		}
 	}
+	
+	public void selectDate(View view) {
+		Calendar eDate = Calendar.getInstance();
+		DatePickerDialog datePickerDialog = new DatePickerDialog (ItemActivity.this, datePicDlgOnDateSelLis, 
+				eDate.get(Calendar.YEAR), eDate.get(Calendar.MONTH), eDate.get(Calendar.DATE));
+		datePickerDialog.setTitle("Select date:");
+		datePickerDialog.setIcon(android.R.drawable.ic_dialog_info);
+		datePickerDialog.show();
+	}
+	
+	public DatePickerDialog.OnDateSetListener datePicDlgOnDateSelLis =
+			new DatePickerDialog.OnDateSetListener() {
+				
+				@Override
+				public void onDateSet(DatePicker view, int year, int monthOfYear,
+						int dayOfMonth) {
+					// TODO Auto-generated method stub
+					strDate = Integer.toString(dayOfMonth) + "/"
+							+ Integer.toString(monthOfYear + 1) + "/"
+							+ Integer.toString(year);
+					it_date_text.setText(strDate);
+				}
+			};
 	
 	
 	@Override
@@ -154,35 +180,55 @@ public class ItemActivity extends Activity {
 		content_text = (EditText) findViewById(R.id.content_text);
 		picture = (ImageView)findViewById(R.id.picture);
 		it_date_text = (EditText)findViewById(R.id.it_date_text);
-		time_text = (EditText)findViewById(R.id.time_text);	
+//		time_text = (EditText)findViewById(R.id.time_text);	
+		time_spinner = (Spinner)findViewById(R.id.time_spinner);
 		location_text = (EditText)findViewById(R.id.location_text);
 		people_text = (EditText)findViewById(R.id.people_text);
 		activity_text = (EditText)findViewById(R.id.activity_text);
+		
+		ArrayAdapter<String> adapTime = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.times));
+		adapTime.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		time_spinner.setOnItemSelectedListener(time_spinnerItemSelLis);
+		
+	}	
+	
+	public Spinner.OnItemSelectedListener time_spinnerItemSelLis = 
+			new Spinner.OnItemSelectedListener (){
 
-	}
-	
-	public void selectDate(View view) {
-		Calendar eDate = Calendar.getInstance();
-		DatePickerDialog datePickerDialog = new DatePickerDialog (ItemActivity.this, datePicDlgOnDateSelLis, 
-				eDate.get(Calendar.YEAR), eDate.get(Calendar.MONTH), eDate.get(Calendar.DATE));
-		datePickerDialog.setTitle("Select date:");
-		datePickerDialog.setIcon(android.R.drawable.ic_dialog_info);
-		datePickerDialog.show();
-	}
-	
-	public DatePickerDialog.OnDateSetListener datePicDlgOnDateSelLis =
-			new DatePickerDialog.OnDateSetListener() {
-				
 				@Override
-				public void onDateSet(DatePicker view, int year, int monthOfYear,
-						int dayOfMonth) {
+				public void onItemSelected(AdapterView<?> parent, View view,
+						int position, long id) {
 					// TODO Auto-generated method stub
-					it_dateText = Integer.toString(dayOfMonth) + "/"
-							+ Integer.toString(monthOfYear + 1) + "/"
-							+ Integer.toString(year);
-					it_date_text.setText(it_dateText);
+					strTime = parent.getSelectedItem().toString();
 				}
-			};
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+					// TODO Auto-generated method stub
+					
+				}
+			
+			
+		};
+	
+//	public Spinner.OnItemSelectedListener time_spinnerItemSelLis = 
+//		new Spinner.OnItemSelectedListener (){
+//
+//			@Override
+//			public void onItemSelected(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				// TODO Auto-generated method stub
+//				strTime = parent.getSelectedItem().toString();
+//			}
+//
+//			@Override
+//			public void onNothingSelected(AdapterView<?> parent) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		
+//		
+//	};
 
 	// 點擊確定與取消都會呼叫這個方法
 	public void onSubmit(View view) {
@@ -191,8 +237,8 @@ public class ItemActivity extends Activity {
 			// 讀取使用者輸入的標題與內容
 			String titleText = title_text.getText().toString();
 			String contentText = content_text.getText().toString();
-			String it_dateText = it_date_text.getText().toString();
-			String timeText = time_text.getText().toString();
+//			String it_dateText = it_date_text.getText().toString();
+//			String timeText = time_text.getText().toString();
 			String locationText=location_text.getText().toString();
 			String peopleText = people_text.getText().toString();
 			String activityText = activity_text.getText().toString();
@@ -200,8 +246,10 @@ public class ItemActivity extends Activity {
 			// 設定記事物件的標題與內容
 			item.setTitle(titleText);
 			item.setContent(contentText);
-			item.setIt_date(it_dateText);
-			item.setTime(timeText);
+//			item.setIt_date(it_dateText);
+			item.setIt_date(strDate);
+//			item.setTime(timeText);
+			item.setTime(strTime);
 			item.setLocation(locationText);
 			item.setPeople(peopleText);
 			item.setActivity(activityText);

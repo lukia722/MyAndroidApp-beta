@@ -16,14 +16,35 @@
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <EditText 
+
+        <EditText
             android:id="@+id/it_date_text"
+            android:layout_margin="2sp"
+            android:background="@drawable/retangle_drawable"
             android:hint="@string/enter_it_date"
+            android:onClick="selectDate"
+            android:padding="6sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+<!--     <TableRow>
+        <TextView 
+            android:text="@string/time"
             android:background="@drawable/retangle_drawable"
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </TableRow>
+
+        <EditText
+            android:id="@+id/time_text"
+            android:layout_margin="2sp"
+            android:background="@drawable/retangle_drawable"
+            android:hint="@string/enter_time"
+            android:onClick="selectTime"
+            android:padding="6sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow> -->
     <TableRow>
         <TextView 
             android:text="@string/time"
@@ -31,12 +52,14 @@
             android:padding="6sp"
             android:layout_margin="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <EditText 
-            android:id="@+id/time_text"
-            android:hint="@string/enter_time"
-            android:background="@drawable/retangle_drawable"
-            android:padding="6sp"
+
+        <Spinner
+            android:id="@+id/time_spinner"
             android:layout_margin="2sp"
+            android:background="@drawable/retangle_drawable"
+            android:entries="@array/times"
+            android:hint="@string/enter_time"
+            android:padding="6sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
     <TableRow>

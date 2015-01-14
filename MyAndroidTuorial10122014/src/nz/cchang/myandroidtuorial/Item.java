@@ -95,6 +95,14 @@ public class Item implements Serializable {
 		this.it_date = it_date;
 	}
 	
+//	public String getTime() {
+//		return time;
+//	}
+//
+//	public void setTime(String time) {
+//		this.time = time;
+//	}
+	
 	public String getTime() {
 		return time;
 	}

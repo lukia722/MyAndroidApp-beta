@@ -48,5 +48,11 @@
     <string name="record_new">重新錄製</string>
     <string name="title_activity_item">ItemActivity</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string-array name="times">
+        <item >Morning</item>
+        <item >Afternoon</item>
+        <item >Evening</item>
+    </string-array>
 
 </resources>
