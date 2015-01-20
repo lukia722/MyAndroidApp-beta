@@ -45,7 +45,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </TableRow> -->
-    <TableRow>
+   <TableRow>     
         <TextView 
             android:text="@string/time"
             android:background="@drawable/retangle_drawable"
@@ -62,6 +62,27 @@
             android:padding="6sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
+    <TableRow>
+        <TextView 
+            android:text="@string/title"
+            android:background="@drawable/retangle_drawable"
+            android:padding="6sp"
+            android:layout_margin="2sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:visibility="invisible"/> 
+        
+        
+            <TextView
+                android:id="@+id/time_text"
+                android:layout_margin="2sp"
+                android:layout_marginRight="@dimen/default_margin"
+                android:background="@drawable/retangle_drawable"
+                android:hint="@string/enter_time"
+                android:onClick="selectTime"
+                android:padding="6sp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</TableRow>
     <TableRow>
         <TextView 
             android:text="@string/title"

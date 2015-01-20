@@ -50,9 +50,11 @@
     <string name="hello_world">Hello world!</string>
     
     <string-array name="times">
+        <item />
         <item >Morning</item>
         <item >Afternoon</item>
         <item >Evening</item>
+        
     </string-array>
 
 </resources>

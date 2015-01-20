@@ -51,6 +51,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 				.findViewById(R.id.selected_item);
 		TextView titleView = (TextView) itemView.findViewById(R.id.title_text);
 		TextView dateView = (TextView) itemView.findViewById(R.id.date_text);
+		TextView pplView = (TextView) itemView.findViewById(R.id.ppl_loc_text);
 
 		// 設定記事顏色
 		GradientDrawable background = (GradientDrawable) typeColor
@@ -59,7 +60,9 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 
 		// 設定標題與日期時間
 		titleView.setText(item.getTitle());
-		dateView.setText(item.getLocalDatetime());
+//		dateView.setText(item.getLocalDatetime());
+		dateView.setText(item.getIt_date());
+		pplView.setText(" : " +  item.getLocation() + " - " + item.getPeople());
 
 		// 設定是否已經選擇
 		selectedItem.setVisibility(item.isSelected() ? View.VISIBLE
@@ -76,7 +79,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 		}
 	}
 
-	// 讀去指定編號的記事資料
+	// 讀取指定編號的記事資料
 	public Item get(int index) {
 		return items.get(index);
 	}

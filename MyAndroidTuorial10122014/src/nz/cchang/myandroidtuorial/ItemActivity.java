@@ -21,11 +21,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class ItemActivity extends Activity {
 
 	private EditText title_text, content_text;
-	private EditText it_date_text, time_text, location_text, people_text, activity_text;
+	private EditText it_date_text, location_text, people_text, activity_text;
+	private TextView  time_text;
 	Spinner time_spinner;
 	
 	
@@ -68,8 +70,7 @@ public class ItemActivity extends Activity {
 			title_text.setText(item.getTitle());
 			content_text.setText(item.getContent());
 			it_date_text.setText(item.getIt_date());
-//			time_text.setText(item.getTime());
-			time_spinner.equals(item.getTime());
+			time_text.setText(item.getTime());
 			location_text.setText(item.getLocation());
 			people_text.setText(item.getPeople());
 			activity_text.setText(item.getActivity());
@@ -180,7 +181,7 @@ public class ItemActivity extends Activity {
 		content_text = (EditText) findViewById(R.id.content_text);
 		picture = (ImageView)findViewById(R.id.picture);
 		it_date_text = (EditText)findViewById(R.id.it_date_text);
-//		time_text = (EditText)findViewById(R.id.time_text);	
+		time_text = (TextView)findViewById(R.id.time_text);	
 		time_spinner = (Spinner)findViewById(R.id.time_spinner);
 		location_text = (EditText)findViewById(R.id.location_text);
 		people_text = (EditText)findViewById(R.id.people_text);
@@ -191,6 +192,7 @@ public class ItemActivity extends Activity {
 		time_spinner.setOnItemSelectedListener(time_spinnerItemSelLis);
 		
 	}	
+
 	
 	public Spinner.OnItemSelectedListener time_spinnerItemSelLis = 
 			new Spinner.OnItemSelectedListener (){
@@ -200,35 +202,18 @@ public class ItemActivity extends Activity {
 						int position, long id) {
 					// TODO Auto-generated method stub
 					strTime = parent.getSelectedItem().toString();
+//					time_text.setText(strTime);
 				}
 
 				@Override
 				public void onNothingSelected(AdapterView<?> parent) {
 					// TODO Auto-generated method stub
 					
-				}
-			
-			
+				}	
+				
 		};
-	
-//	public Spinner.OnItemSelectedListener time_spinnerItemSelLis = 
-//		new Spinner.OnItemSelectedListener (){
-//
-//			@Override
-//			public void onItemSelected(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				// TODO Auto-generated method stub
-//				strTime = parent.getSelectedItem().toString();
-//			}
-//
-//			@Override
-//			public void onNothingSelected(AdapterView<?> parent) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		
-//		
-//	};
+		
+
 
 	// 點擊確定與取消都會呼叫這個方法
 	public void onSubmit(View view) {
@@ -239,6 +224,7 @@ public class ItemActivity extends Activity {
 			String contentText = content_text.getText().toString();
 //			String it_dateText = it_date_text.getText().toString();
 //			String timeText = time_text.getText().toString();
+			String timeText = (String) time_spinner.getSelectedItem();
 			String locationText=location_text.getText().toString();
 			String peopleText = people_text.getText().toString();
 			String activityText = activity_text.getText().toString();
@@ -248,8 +234,8 @@ public class ItemActivity extends Activity {
 			item.setContent(contentText);
 //			item.setIt_date(it_dateText);
 			item.setIt_date(strDate);
-//			item.setTime(timeText);
-			item.setTime(strTime);
+			item.setTime(timeText);
+//			item.setTime(strTime);
 			item.setLocation(locationText);
 			item.setPeople(peopleText);
 			item.setActivity(activityText);

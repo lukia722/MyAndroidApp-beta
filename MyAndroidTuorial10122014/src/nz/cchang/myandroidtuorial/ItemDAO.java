@@ -141,8 +141,8 @@ public class ItemDAO {
 	// 讀取所有記事資料
 	public List<Item> getAll() {
 		List<Item> result = new ArrayList<Item>();
-		Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null, null);
-		
+//		Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null, null);
+		Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, IT_DATE_COLUMN + " DESC", null);	
 		
 		while (cursor.moveToNext()) {
 			result.add(getRecord(cursor));
